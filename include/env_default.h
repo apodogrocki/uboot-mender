@@ -9,6 +9,8 @@
 
 #include <env_callback.h>
 
+#include <env_mender.h>
+
 #ifdef DEFAULT_ENV_INSTANCE_EMBEDDED
 env_t environment __UBOOT_ENV_SECTION__(environment) = {
 	ENV_CRC,	/* CRC Sum */
@@ -21,7 +23,7 @@ static char default_environment[] = {
 #else
 const uchar default_environment[] = {
 #endif
-#ifndef CONFIG_USE_DEFAULT_ENV_FILE
+	MENDER_ENV_SETTINGS
 #ifdef	CONFIG_ENV_CALLBACK_LIST_DEFAULT
 	ENV_CALLBACK_VAR "=" CONFIG_ENV_CALLBACK_LIST_DEFAULT "\0"
 #endif
